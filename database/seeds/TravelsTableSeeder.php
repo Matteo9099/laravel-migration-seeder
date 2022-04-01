@@ -2,6 +2,7 @@
 
 use App\Travel;
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
 
 class TravelsTableSeeder extends Seeder
 {
@@ -10,20 +11,35 @@ class TravelsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker) // dependency injection
     {
-        $travel = new Travel();
 
-        $travel->reference ='159357';
-        $travel->name = 'Toffain Agency';
-        $travel->address = 'via Roma 10';
-        $travel->phone = 065555555;
-        $travel->hotel = 'Blu Marilù';
-        $travel->apparments = '68';
-        $travel->destination = 'Genova, Italy';
-        $travel->offers = '15%';
+        for($i=0; $i<10; $i++){
 
-        $travel->save();
+
+            $travel = new Travel();
+    
+            $travel->reference = $faker->bothify('?????-#####');
+            $travel->name = $faker->words(3, true);
+            $travel->address = $faker->words(4, true);
+            $travel->phone =$faker->randomNumber(3, false);
+            $travel->hotel = $faker->words(4, true);
+            $travel->appartments = $faker->randomNumber(3, false);
+            $travel->destination = $faker->bothify('?????,?????');
+            $travel->offers = $faker->randomNumber(2, false);
+            $travel->period = $faker->date();
+    
+            $travel->save();
+
+        }
+
+
+    
+
+        
+
 
     }
+
+
 }
