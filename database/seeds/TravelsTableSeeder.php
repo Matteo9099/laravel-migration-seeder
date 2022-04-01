@@ -26,7 +26,7 @@ class TravelsTableSeeder extends Seeder
             $travel->hotel = $faker->words(4, true);
             $travel->appartments = $faker->randomNumber(3, false);
             $travel->destination = $faker->bothify('?????,?????');
-            $travel->offers = $faker->randomNumber(2, false);
+            $travel->offers = $faker->randomNumber(2, false) . '%';
             $travel->period = $faker->date();
     
             $travel->save();
